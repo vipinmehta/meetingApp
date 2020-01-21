@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row" *ngFor="let meeting of meetings">
+      <div class="col-sm">
+        {{meeting.MeetingSubject}}
+      </div>
+      <div class="col-sm">
+        {{meeting.MeetingAgenda}}
+      </div>
+      <div class="col-sm">
+        {{meeting.MeetingTime}}
+      </div>
+      <div class="col-sm">
+        {{meeting.Attendees}}
+      </div>
+    <div class="col-sm">
+        
+    </div>
+    <div>
+        
+    </div>
+    <a routerLink="/addedit/{{meeting.MeetingId}}">Edit</a>
+</div>
+<a routerLink="/addedit">Add Meeting</a>
