@@ -1,0 +1,30 @@
+
+
+<div class="container">
+  <div></div>
+  <div>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Attendee</th>
+          <th>No. Of Meetings</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let userMeeting of userMeetings">
+          <td>{{userMeeting.User}}</td>
+          <td> {{userMeeting.NoOfMeetings}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    
+    <div class="col-md-12 d-flex justify-content-center">
+      <button type="button" (click)="goBack()" class="btn btn-primary mr-1">
+        <i class="fas fa-arrow-left pr-1"></i>Back</button>
+    </div>
+</div>
+

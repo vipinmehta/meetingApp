@@ -1,4 +1,40 @@
+
+<a routerLink="/addedit" class="btn btn-primary mr-1">Add Meeting</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a routerLink="/report" class="btn btn-primary mr-1">Attendee Report</a>
+
 <div class="container">
+  <div></div>
+  <div>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Meeting Subject</th>
+          <th>Meeting Agenda</th>
+          <th>Meeting Time</th>
+          <th>Attendees</th>
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let meeting of meetings">
+          <td>{{meeting.MeetingSubject}}</td>
+          <td> {{meeting.MeetingAgenda}}</td>
+          <td>{{meeting.MeetingTime | date: 'dd/MM/yyyy hh:mm:ss' }} </td> 
+          <td>{{meeting.Attendees}}</td>
+          <td><a [routerLink]="['/addedit',meeting.MeetingId]" class="btn btn-primary mr-1">Edit</a>  &nbsp;
+          <a (click)="onDelete(meeting.MeetingId)"  class="btn btn-primary mr-1">Delete</a></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- <div class="table">
     <div class="row" *ngFor="let meeting of meetings">
       <div class="col-sm">
         {{meeting.MeetingSubject}}
@@ -19,5 +55,4 @@
         
     </div>
     <a routerLink="/addedit/{{meeting.MeetingId}}">Edit</a>
-</div>
-<a routerLink="/addedit">Add Meeting</a>
+</div> -->

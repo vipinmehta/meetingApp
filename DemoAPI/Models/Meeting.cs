@@ -12,5 +12,8 @@ namespace DemoAPI.Models
         public string MeetingAgenda { get; set; }
         public DateTime MeetingTime { get; set; }
         public string Attendees { get; set; }
+
     }
+
+   
 }

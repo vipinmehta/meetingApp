@@ -26,6 +26,8 @@ namespace DemoAPI.Controllers
             return db.Meetings;
         }
 
+        
+
         // GET: api/Meetings/5
         [ResponseType(typeof(Meeting))]
         public IHttpActionResult GetMeeting(int id)
@@ -93,7 +95,8 @@ namespace DemoAPI.Controllers
         [ResponseType(typeof(Meeting))]
         public IHttpActionResult DeleteMeeting(int id)
         {
-            Meeting meeting = db.Meetings.Find(id);
+            var meeting=db.Meetings.FirstOrDefault(m => m.MeetingId == id);
+            //Meeting meeting = db.Meetings.Find(id);
             if (meeting == null)
             {
                 return NotFound();
@@ -118,5 +121,7 @@ namespace DemoAPI.Controllers
         {
             return db.Meetings.Count(e => e.MeetingId == id) > 0;
         }
+
+        
     }
 }

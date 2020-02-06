@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Meeting } from '../meeting.model';
 import MeetingService from '../meeting.services';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-addeditmeeting',
@@ -9,22 +10,39 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./addeditmeeting.component.css']
 })
 export class AddeditmeetingComponent implements OnInit {
-  meeting:Meeting;  
-  constructor(private meetingService: MeetingService, private router: Router, private route: ActivatedRoute) { 
-    this.meeting=new Meeting();
+  meetingId: string;
+  sub: any;
+  meeting: any;
+  constructor(
+    private meetingService: MeetingService,
+    private router: Router,
+    private route: ActivatedRoute) {
+
+    this.meeting = new Meeting();
   }
 
   ngOnInit() {
     debugger;
-    this.route.params.subscribe( params => console.log(params['íd']) );
+    this.route.params.subscribe(params => this.meetingId = params['id']);
+    this.meetingService.get(this.meetingId) .subscribe((response) => {
+      this.meeting=response;
+    })
+    // setTimeout(function () { 
+    //     this.meeting= this.meetingService.get('2');
+    // }, 3000);
+    
 
   }
 
-  onSave(){
+  onSave() {
     this.meetingService.save(this.meeting)
-    .subscribe((response)=>{
-      this.router.navigate(['/meeting']);
-    })
+      .subscribe((response) => {
+        this.router.navigate(['/meeting']);
+      })
+  }
+
+  goBack() {
+    this.router.navigate(["/meeting"]);
   }
 
 }
